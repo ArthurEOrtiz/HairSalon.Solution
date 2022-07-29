@@ -36,7 +36,7 @@ namespace HairSalon.Controllers
 
     public ActionResult Details(int id)
     {
-      Stylist thisStylist = _db.Stylists.FirstOrDefault(stylist => stylists.StylistId == id);
+      Stylist thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
       return View(thisStylist);
     }
     public ActionResult Edit(int id)
@@ -46,7 +46,7 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Category category)
+    public ActionResult Edit(Stylist stylist)
     {
       _db.Entry(stylist).State = EntityState.Modified;
       _db.SaveChanges();
@@ -55,7 +55,7 @@ namespace HairSalon.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisStylist = _db.Stylists.FirstOrDefault(stylists => stylist.StylistId == id);
+      var thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
       return View(thisStylist);
     }
 
@@ -63,7 +63,7 @@ namespace HairSalon.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       var thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
-      _db.Categories.Remove(thisStylist);
+      _db.Stylists.Remove(thisStylist);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
